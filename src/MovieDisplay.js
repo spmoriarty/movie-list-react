@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function MovieDisplay() {
+export default function MovieDisplay({ }) {
   return (
-    <div>MovieDisplay</div>
+    <div>MovieDisplay
+
+    </div>
   );
 }

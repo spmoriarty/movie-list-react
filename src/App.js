@@ -1,62 +1,49 @@
+export default App;
 import './App.css';
-import { setState } from 'react';
-import MovieDisplay from './MovieDisplay.js';
-const [title, setMovieTitle] = setState('StarWars');
-const [director, setMovieDirector] = setState('George Lucas');
-const [year, setMovieYear] = setState('1979');
-const [color, setMovieColor] = setState('');
+import { useState } from 'react';
+import MovieForm from './MovieForm.js';
+
 
 
 
 function App() {
-  return (
-    function handleSubmit(e) {
-      e.preventDefault();
+
+  const [title, setMovieTitle] = useState('StarWars');
+  const [director, setMovieDirector] = useState('George Lucas');
+  const [year, setMovieYear] = useState('1979');
+  const [color, setMovieColor] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
   
-      const movie = {
-        title: title,
-        director: director,
-        color: color,
-      };
-    <><header>
-      <p>This right here</p>
-    </header>
+    const movie = {
+      title: title,
+      director: director,
+      color: color,
+    };
+    console.log(movie);
+  }  
+  return <><header>
+    <p>This right here</p>
+  </header>
     
   <div className = 'movieForm'>
-    <form  onSubmit = {handleSubmit(e)}>
-      <label>Movie Title
-      <input value={title} onChange={e => setMovieTitle(e.target.value)}/></label>
-      <label>Movie Director
-      <input value={director} onChange={e => setMovieDirector(e.target.value)} /></label>
-      <label>Movie Year
-      <input value={year} onChanve={e => setMovieYear(e.target.value)}/></label>
-      <select value={color} onChange={e => setMovieColor(e.target.value)} >
-        <option value='1'>Yellow</option>
-        <option value='2'>Orange</option>
-        <option value='3'>Red</option>
-      </select>
-      <button>Add Movie</button>
-    </form>
-  </div>
+    <MovieForm 
+      setMovieColor={setMovieColor}
+      title={title}
+      director={director}
+      year={year}
+      color={color}
+      handleSubmit={handleSubmit}
+      setMovieDirector={setMovieDirector}
+      setMovieTitle={setMovieTitle}
+      setMovieYear={setMovieYear}
+    />
+  </div> </>;
 
-      <MovieDisplay 
-      <div className='display-movies'>
-        title={title}
-        year={year}
-        director={director}
-      <h3>{title}</h3>
-      <p>{year}</p>
-      <p>by {director}</p>
-    </div> />
-        
-      
-
-
-
-
-    </>
-
-  );
 }
 
-export default App;
+
+
+
+
