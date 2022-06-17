@@ -39,7 +39,16 @@ function App() {
       setMovieTitle={setMovieTitle}
       setMovieYear={setMovieYear}
     />
-  </div> </>;
+    <div className = 'movie-poster' color = {color} >
+      <h2>{title}</h2>
+      <h3>{director}</h3>
+      <p>{year}</p>
+    </div>
+  </div> 
+
+
+  
+  </>;
 
 }
 
