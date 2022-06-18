@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function MovieDisplay({ }) {
+export default function MovieDisplay({ title, director, year, color }) {
   return (
-    <div>MovieDisplay
-
+    <div className = 'movie-poster' color = {color} >
+      <h2>{title}</h2>
+      <h3>{director}</h3>
+      <p>{year}</p>
     </div>
   );
 }
