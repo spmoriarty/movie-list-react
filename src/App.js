@@ -2,7 +2,6 @@ export default App;
 import './App.css';
 import { useState } from 'react';
 import MovieForm from './MovieForm.js';
-import MovieDisplay from './MovieDisplay.js';
 import { useEffect } from 'react/cjs/react.production.min';
 
 
@@ -43,23 +42,24 @@ function App() {
   
   const [filterText, setFilterText] = useState('');
 
-  function filterMovies(filterText)
+  function filterMovies(filterText) {
+    setFilterText(filterText);
+
+    const updatedMovies = allMovies.filter(movie => movie.title.toLowerCase().include(filterText.toLowerCase()));
+    setVisibleMovies(updatedMovies);
+  }
 
   function deleteMovieByTitle(title) {
     const index = allMovies.findIndex(movie => movie.title === title);
     allMovies.splice(index, 1);
     setMovies([...allMovies]);
-  };
-  
-
+  }
 
   
-  return <><header>
+  return (<> <header>
     <p>This right here</p>
-  </header>
-    
-  <div className = 'movieForm'>
-    <MovieForm 
+  </header><div className='movieForm'>
+    <MovieForm
       setMovieColor={setMovieColor}
       title={title}
       director={director}
@@ -68,31 +68,21 @@ function App() {
       handleSubmit={handleSubmit}
       setMovieDirector={setMovieDirector}
       setMovieTitle={setMovieTitle}
-      setMovieYear={setMovieYear}
-    />
-    <MovieDisplay
-      title={title}
-      director={director}
-      year={year}
-      color={color}
-    />
-    <div>
-      <hr/>
-      <label>Movie Filter : </label>
-      <input onChange={e => setMovieFilter(e.target.value)}/>
-      <hr/>
-    </div>
-
-
-  </div> 
-
-
-  
-  </>;
-
-}
-
-
-
-
-
+      setMovieYear={setMovieYear} />
+  </div>
+  <MovieDisplay
+    title={title}
+    director={director}
+    year={year}
+    color={color} />
+  <div className='filteredList'>
+    <hr />
+    <input value={filterText} onChange={e => filterMovies(e.target.value)} />
+  </div>
+  <div className='movie-list'>
+    {visibleMovies.localeCompare((movie, i) => <div onClick={() => deleteMovieByTitle(movie.title)} key={movie.title + i} className='poster' style={{ background: movie.color }}>
+      <h2>{movie.title}</h2>
+      <h3>{movie.director}</h3>
+      <p>{movie.year}</p>
+    </div>)}
+  </div></>);}
