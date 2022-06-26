@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import MovieForm from './MovieForm.js';
 import MovieDisplay from './MovieDisplay.js';
+import { useEffect } from 'react/cjs/react.production.min';
 
 
 
@@ -12,8 +13,11 @@ function App() {
   const [title, setMovieTitle] = useState('StarWars');
   const [director, setMovieDirector] = useState('George Lucas');
   const [year, setMovieYear] = useState('1979');
-  const [color, setMovieColor] = useState('');
-  const [movieFilter, setMovieFilter] = useState('');
+  const [color, setMovieColor] = useState('lightgrey');
+  
+  const [allMovies, setMovies] = ('');
+
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -23,8 +27,33 @@ function App() {
       director: director,
       color: color,
     };
-    
+
+    const updatedMovies = [...allMovies, movie];
+    setMovies(updatedMovies);
   }  
+  
+  const [movieFilter, setMovieFilter] = useState('');
+  const [visibleMovies, setVisibleMovies] = useState(allMovies);
+
+  useEffect(() => {
+    setVisibleMovies(allMovies);
+    setMovieFilter('');
+  }, [allMovies]
+  );
+  
+  const [filterText, setFilterText] = useState('');
+
+  function filterMovies(filterText)
+
+  function deleteMovieByTitle(title) {
+    const index = allMovies.findIndex(movie => movie.title === title);
+    allMovies.splice(index, 1);
+    setMovies([...allMovies]);
+  };
+  
+
+
+  
   return <><header>
     <p>This right here</p>
   </header>

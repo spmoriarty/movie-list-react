@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+.movie-poster {
+  display: flex;
+  background-color: lightblue;
+  justify-content: center;
+  flex-direction: column;
+  height: 200px;
+  width: 150px;
+  margin: 10px;
+  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.35);
+}
