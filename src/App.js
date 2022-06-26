@@ -2,7 +2,7 @@ export default App;
 import './App.css';
 import { useState } from 'react';
 import MovieForm from './MovieForm.js';
-import { useEffect } from 'react/cjs/react.production.min';
+import { useEffect } from 'react';
 
 
 
@@ -31,7 +31,7 @@ function App() {
     setMovies(updatedMovies);
   }  
   
-  const [movieFilter, setMovieFilter] = useState('');
+  const [filterMovies, setMovieFilter] = useState('');
   const [visibleMovies, setVisibleMovies] = useState(allMovies);
 
   useEffect(() => {
@@ -70,17 +70,12 @@ function App() {
       setMovieTitle={setMovieTitle}
       setMovieYear={setMovieYear} />
   </div>
-  <MovieDisplay
-    title={title}
-    director={director}
-    year={year}
-    color={color} />
   <div className='filteredList'>
     <hr />
     <input value={filterText} onChange={e => filterMovies(e.target.value)} />
   </div>
   <div className='movie-list'>
-    {visibleMovies.localeCompare((movie, i) => <div onClick={() => deleteMovieByTitle(movie.title)} key={movie.title + i} className='poster' style={{ background: movie.color }}>
+    {visibleMovies.map((movie, i) => <div onClick={() => deleteMovieByTitle(movie.title)} key={movie.title + i} className='poster' style={{ background: movie.color }}>
       <h2>{movie.title}</h2>
       <h3>{movie.director}</h3>
       <p>{movie.year}</p>
