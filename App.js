@@ -31,12 +31,12 @@ function App() {
     setMovies(updatedMovies);
   }  
   
-  const [filterMovies, setMovieFilter] = useState('');
+
   const [visibleMovies, setVisibleMovies] = useState(allMovies);
 
   useEffect(() => {
     setVisibleMovies(allMovies);
-    setMovieFilter('');
+    setFilterText('');
   }, [allMovies]
   );
   
@@ -53,6 +53,7 @@ function App() {
     const index = allMovies.findIndex(movie => movie.title === title);
     allMovies.splice(index, 1);
     setMovies([...allMovies]);
+    // WHY SO ANGRY
   }
 
   
