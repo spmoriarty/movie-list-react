@@ -53,6 +53,7 @@ function App() {
     const index = allMovies.findIndex(movie => movie.title === title);
     allMovies.splice(index, 1);
     setMovies([...allMovies]);
+    // WHY SO ANGRY
   }
 
   
