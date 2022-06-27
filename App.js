@@ -42,7 +42,7 @@ function App() {
   
   const [filterText, setFilterText] = useState('');
 
-  function filterMovies(filterText) {
+  function handleFilter(filterText) {
     setFilterText(filterText);
 
     const updatedMovies = allMovies.filter(movie => movie.title.toLowerCase().include(filterText.toLowerCase()));
@@ -73,7 +73,7 @@ function App() {
   </div>
   <div className='filteredList'>
     <hr />
-    <input value={filterText} onChange={e => filterMovies(e.target.value)} />
+    <input value={filterText} onChange={e => handleFilter(e.target.value)} />
   </div>
   <div className='movie-list'>
     {visibleMovies.map((movie, i) => <div onClick={() => deleteMovieByTitle(movie.title)} key={movie.title + i} className='poster' style={{ background: movie.color }}>
