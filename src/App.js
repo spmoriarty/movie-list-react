@@ -3,6 +3,8 @@ import './App.css';
 import { useState } from 'react';
 import MovieForm from './MovieForm.js';
 import { useEffect } from 'react';
+import { getSingleMovie } from './fetch-utils';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -14,7 +16,7 @@ function App() {
   const [year, setMovieYear] = useState('1979');
   const [color, setMovieColor] = useState('lightgrey');
   
-  const [allMovies, setMovies] = ([{ title: 'John', year: '1972', director: 'John Wayne', color: 'black' }, { title: 'Martian', year: '1980', director: 'John Wayne Gayce', color: 'blue' }]);
+  const [allMovies, setMovies] = ([moviesList]);
 
 
 
@@ -32,8 +34,20 @@ function App() {
   }  
   
 
+
+  const [moviesList, setMoviesList] = useState({});
+  const params = useParams();
+
+  useEffect(() => {
+    async function fetchSingleMovies() {
+      const data = await getSingleMovie(params.id);
+      setMoviesList(data);
+    }
+    fetchSingleMovies();
+  }, [params.id]);
+
   const [visibleMovies, setVisibleMovies] = useState(allMovies);
-  console.log(visibleMovies);
+  
 
   useEffect(() => {
     setVisibleMovies(allMovies);
