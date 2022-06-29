@@ -8,3 +8,10 @@ export default async function movieList() {
   
 }
 
+export async function getSingleMovie(id) {
+  const response = await client.from('movies').select().match({ id }).single();
+  
+  return response.data;
+  
+}
+
