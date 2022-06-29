@@ -14,7 +14,7 @@ function App() {
   const [year, setMovieYear] = useState('1979');
   const [color, setMovieColor] = useState('lightgrey');
   
-  const [allMovies, setMovies] = ('');
+  const [allMovies, setMovies] = ([{ title: 'John', year: '1972', director: 'John Wayne', color: 'black' }, { title: 'Martian', year: '1980', director: 'John Wayne Gayce', color: 'blue' }]);
 
 
 
@@ -33,6 +33,7 @@ function App() {
   
 
   const [visibleMovies, setVisibleMovies] = useState(allMovies);
+  console.log(visibleMovies);
 
   useEffect(() => {
     setVisibleMovies(allMovies);
