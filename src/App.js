@@ -3,20 +3,23 @@ import './App.css';
 import { useState } from 'react';
 import MovieForm from './MovieForm.js';
 import { useEffect } from 'react';
-import { getSingleMovie } from './fetch-utils';
-import { useParams } from 'react-router-dom';
+
+
 
 
 
 
 function App() {
-
+  
   const [title, setMovieTitle] = useState('StarWars');
   const [director, setMovieDirector] = useState('George Lucas');
   const [year, setMovieYear] = useState('1979');
   const [color, setMovieColor] = useState('lightgrey');
+  // const [moviesList, setMoviesList] = useState({});
   
-  const [allMovies, setMovies] = ([moviesList]);
+  const [allMovies, setMovies] = useState([]);
+  const [visibleMovies, setVisibleMovies] = useState(allMovies);
+  
 
 
 
@@ -35,18 +38,15 @@ function App() {
   
 
 
-  const [moviesList, setMoviesList] = useState({});
-  const params = useParams();
 
-  useEffect(() => {
-    async function fetchSingleMovies() {
-      const data = await getSingleMovie(params.id);
-      setMoviesList(data);
-    }
-    fetchSingleMovies();
-  }, [params.id]);
+  // useEffect(() => {
+  //   async function fetchSingleMovies() {
+  //     const data = await getSingleMovie(params.id);
+  //     setMoviesList(data);
+  //   }
+  //   fetchSingleMovies();
+  // }, [params.id]);
 
-  const [visibleMovies, setVisibleMovies] = useState(allMovies);
   
 
   useEffect(() => {
