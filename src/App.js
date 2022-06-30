@@ -59,8 +59,8 @@ function App() {
 
   function handleFilter(filterText) {
     setFilterText(filterText);
-
-    const updatedMovies = allMovies.filter(movie => movie.title.toLowerCase().include(filterText.toLowerCase()));
+    
+    const updatedMovies = allMovies.filter(movie => movie.title.toLowerCase().includes(filterText.toLowerCase()));
     setVisibleMovies(updatedMovies);
   }
 
